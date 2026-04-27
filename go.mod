@@ -1,0 +1,3 @@
+module lark
+
+go 1.26.1
