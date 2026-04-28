@@ -1,0 +1,17 @@
+name: lark_api_gateway
+server_id: 1
+port: 8088
+log: "./configs/logger.yaml"
+etcd:
+  endpoints: ["lark-etcd-01:12379","lark-etcd-02:12381","lark-etcd-03:12383"]
+  username:
+  password:
+  schema: lark
+  read_timeout: 5000
+  write_timeout: 5000
+  dial_timeout: 5000
+redis:
+  address: ["lark-redis-01:7001","lark-redis-02:7002","lark-redis-03:7003","lark-redis-04:7004"]
+  db: 0
+  password:
+  prefix: "LK:"
