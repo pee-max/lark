@@ -2,6 +2,7 @@ package config
 
 import (
 	"flag"
+	"fmt"
 	"lark/pkg/conf"
 	"lark/pkg/utils"
 )
@@ -27,7 +28,11 @@ var (
 
 func init() {
 	flag.Parse()
-	utils.YamlToStruct(*confFile, config)
+	err := utils.YamlToStruct(*confFile, config)
+	if err != nil {
+		fmt.Println(err.Error())
+		return
+	}
 
 	config.ServerID = *serverId
 	config.Port = *port

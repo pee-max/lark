@@ -1,0 +1,43 @@
+syntax = "proto3";
+package pb_auth;
+option go_package = "./pb_auth;pb_auth";
+
+enum PLATFORM_TYPE{
+    UNKNOWN_PLATFORM_TYPE = 0;
+    IOS = 1;
+    ANDROID = 2;
+    MAC = 3;
+    WINDOWS = 4;
+    WEB = 5;
+}
+
+message SignUpReq{
+  PLATFORM_TYPE regPlatForm = 1;
+  string nickname = 2;
+  string password = 3;
+  string firstname = 4;
+}
+
+message SignUpResp{
+  int32 code = 1;
+  string msg = 2;
+  UserInfo userInfo = 3;
+  Token accessToken = 4;
+  Token refreshToken = 5;
+}
+
+message UserInfo{
+  string nickname = 1;
+  string lastname = 2;
+  string password = 3;
+  string firstname = 4;
+}
+
+message Token{
+  string token = 1;
+  int64 expire = 2;
+}
+
+service Auth{
+  rpc SignUp(SignUpReq) returns (SignUpResp);
+}
